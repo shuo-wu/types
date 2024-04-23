@@ -33,6 +33,8 @@ service ControllerService {
     rpc VersionDetailGet(google.protobuf.Empty) returns(VersionDetailGetReply);
 
     rpc MetricsGet(google.protobuf.Empty) returns(MetricsGetReply);
+
+    rpc VolumeBench(VolumeBenchRequest) returns (VolumeBenchResponse);
 }
 
 message Volume {
@@ -162,4 +164,14 @@ message Metrics {
 
 message MetricsGetReply {
     Metrics metrics = 1;
+}
+
+message VolumeBenchRequest {
+    string bench_type = 1;
+    int32 thread = 2;
+    int64 size = 3;
+}
+
+message VolumeBenchResponse {
+    string output = 1;
 }

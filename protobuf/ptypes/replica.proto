@@ -32,6 +32,8 @@ service ReplicaService {
     (SnapshotMaxCountSetResponse) {}
   rpc SnapshotMaxSizeSet(SnapshotMaxSizeSetRequest) returns
     (SnapshotMaxSizeSetResponse) {}
+
+  rpc ReplicaBench(ReplicaBenchRequest) returns (ReplicaBenchResponse) {}
 }
 
 message ReplicaCreateRequest {
@@ -196,4 +198,14 @@ message PrepareRemoveAction {
   string action = 1;
   string source = 2;
   string target = 3;
+}
+
+message ReplicaBenchRequest {
+  string bench_type = 1;
+  int32 thread = 2;
+  int64 size = 3;
+}
+
+message ReplicaBenchResponse {
+  string output = 1;
 }
