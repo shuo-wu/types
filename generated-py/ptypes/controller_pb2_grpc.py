@@ -120,6 +120,11 @@ class ControllerServiceStub(object):
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=ptypes_dot_controller__pb2.MetricsGetReply.FromString,
                 )
+        self.VolumeBench = channel.unary_unary(
+                '/ptypes.ControllerService/VolumeBench',
+                request_serializer=ptypes_dot_controller__pb2.VolumeBenchRequest.SerializeToString,
+                response_deserializer=ptypes_dot_controller__pb2.VolumeBenchResponse.FromString,
+                )
 
 
 class ControllerServiceServicer(object):
@@ -251,6 +256,12 @@ class ControllerServiceServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def VolumeBench(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_ControllerServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -358,6 +369,11 @@ def add_ControllerServiceServicer_to_server(servicer, server):
                     servicer.MetricsGet,
                     request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                     response_serializer=ptypes_dot_controller__pb2.MetricsGetReply.SerializeToString,
+            ),
+            'VolumeBench': grpc.unary_unary_rpc_method_handler(
+                    servicer.VolumeBench,
+                    request_deserializer=ptypes_dot_controller__pb2.VolumeBenchRequest.FromString,
+                    response_serializer=ptypes_dot_controller__pb2.VolumeBenchResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -723,5 +739,22 @@ class ControllerService(object):
         return grpc.experimental.unary_unary(request, target, '/ptypes.ControllerService/MetricsGet',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ptypes_dot_controller__pb2.MetricsGetReply.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def VolumeBench(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/ptypes.ControllerService/VolumeBench',
+            ptypes_dot_controller__pb2.VolumeBenchRequest.SerializeToString,
+            ptypes_dot_controller__pb2.VolumeBenchResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
