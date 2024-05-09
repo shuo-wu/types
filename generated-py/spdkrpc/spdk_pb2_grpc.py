@@ -58,7 +58,7 @@ class SPDKServiceStub(object):
         self.ReplicaRebuildingSrcStart = channel.unary_unary(
                 '/spdkrpc.SPDKService/ReplicaRebuildingSrcStart',
                 request_serializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcStartRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcStartResponse.FromString,
                 )
         self.ReplicaRebuildingSrcFinish = channel.unary_unary(
                 '/spdkrpc.SPDKService/ReplicaRebuildingSrcFinish',
@@ -98,7 +98,7 @@ class SPDKServiceStub(object):
         self.ReplicaRebuildingDstSnapshotRevert = channel.unary_unary(
                 '/spdkrpc.SPDKService/ReplicaRebuildingDstSnapshotRevert',
                 request_serializer=spdkrpc_dot_spdk__pb2.SnapshotRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingDstSnapshotRevertResponse.FromString,
                 )
         self.ReplicaBackupCreate = channel.unary_unary(
                 '/spdkrpc.SPDKService/ReplicaBackupCreate',
@@ -561,7 +561,7 @@ def add_SPDKServiceServicer_to_server(servicer, server):
             'ReplicaRebuildingSrcStart': grpc.unary_unary_rpc_method_handler(
                     servicer.ReplicaRebuildingSrcStart,
                     request_deserializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcStartRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcStartResponse.SerializeToString,
             ),
             'ReplicaRebuildingSrcFinish': grpc.unary_unary_rpc_method_handler(
                     servicer.ReplicaRebuildingSrcFinish,
@@ -601,7 +601,7 @@ def add_SPDKServiceServicer_to_server(servicer, server):
             'ReplicaRebuildingDstSnapshotRevert': grpc.unary_unary_rpc_method_handler(
                     servicer.ReplicaRebuildingDstSnapshotRevert,
                     request_deserializer=spdkrpc_dot_spdk__pb2.SnapshotRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingDstSnapshotRevertResponse.SerializeToString,
             ),
             'ReplicaBackupCreate': grpc.unary_unary_rpc_method_handler(
                     servicer.ReplicaBackupCreate,
@@ -902,7 +902,7 @@ class SPDKService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spdkrpc.SPDKService/ReplicaRebuildingSrcStart',
             spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcStartRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcStartResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
@@ -1038,7 +1038,7 @@ class SPDKService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spdkrpc.SPDKService/ReplicaRebuildingDstSnapshotRevert',
             spdkrpc_dot_spdk__pb2.SnapshotRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            spdkrpc_dot_spdk__pb2.ReplicaRebuildingDstSnapshotRevertResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
