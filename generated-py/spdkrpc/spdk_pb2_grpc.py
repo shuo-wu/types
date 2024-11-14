@@ -70,16 +70,6 @@ class SPDKServiceStub(object):
                 request_serializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcFinishRequest.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 )
-        self.ReplicaRebuildingSrcAttach = channel.unary_unary(
-                '/spdkrpc.SPDKService/ReplicaRebuildingSrcAttach',
-                request_serializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcAttachRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                )
-        self.ReplicaRebuildingSrcDetach = channel.unary_unary(
-                '/spdkrpc.SPDKService/ReplicaRebuildingSrcDetach',
-                request_serializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcDetachRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                )
         self.ReplicaRebuildingSrcShallowCopyStart = channel.unary_unary(
                 '/spdkrpc.SPDKService/ReplicaRebuildingSrcShallowCopyStart',
                 request_serializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcShallowCopyStartRequest.SerializeToString,
@@ -351,18 +341,6 @@ class SPDKServiceServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def ReplicaRebuildingSrcFinish(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ReplicaRebuildingSrcAttach(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def ReplicaRebuildingSrcDetach(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -670,16 +648,6 @@ def add_SPDKServiceServicer_to_server(servicer, server):
             'ReplicaRebuildingSrcFinish': grpc.unary_unary_rpc_method_handler(
                     servicer.ReplicaRebuildingSrcFinish,
                     request_deserializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcFinishRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'ReplicaRebuildingSrcAttach': grpc.unary_unary_rpc_method_handler(
-                    servicer.ReplicaRebuildingSrcAttach,
-                    request_deserializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcAttachRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
-            'ReplicaRebuildingSrcDetach': grpc.unary_unary_rpc_method_handler(
-                    servicer.ReplicaRebuildingSrcDetach,
-                    request_deserializer=spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcDetachRequest.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
             'ReplicaRebuildingSrcShallowCopyStart': grpc.unary_unary_rpc_method_handler(
@@ -1080,40 +1048,6 @@ class SPDKService(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/spdkrpc.SPDKService/ReplicaRebuildingSrcFinish',
             spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcFinishRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ReplicaRebuildingSrcAttach(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spdkrpc.SPDKService/ReplicaRebuildingSrcAttach',
-            spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcAttachRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
-    def ReplicaRebuildingSrcDetach(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/spdkrpc.SPDKService/ReplicaRebuildingSrcDetach',
-            spdkrpc_dot_spdk__pb2.ReplicaRebuildingSrcDetachRequest.SerializeToString,
             google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

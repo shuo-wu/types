@@ -31,8 +31,6 @@ const (
 	SPDKService_ReplicaWatch_FullMethodName                         = "/spdkrpc.SPDKService/ReplicaWatch"
 	SPDKService_ReplicaRebuildingSrcStart_FullMethodName            = "/spdkrpc.SPDKService/ReplicaRebuildingSrcStart"
 	SPDKService_ReplicaRebuildingSrcFinish_FullMethodName           = "/spdkrpc.SPDKService/ReplicaRebuildingSrcFinish"
-	SPDKService_ReplicaRebuildingSrcAttach_FullMethodName           = "/spdkrpc.SPDKService/ReplicaRebuildingSrcAttach"
-	SPDKService_ReplicaRebuildingSrcDetach_FullMethodName           = "/spdkrpc.SPDKService/ReplicaRebuildingSrcDetach"
 	SPDKService_ReplicaRebuildingSrcShallowCopyStart_FullMethodName = "/spdkrpc.SPDKService/ReplicaRebuildingSrcShallowCopyStart"
 	SPDKService_ReplicaRebuildingSrcShallowCopyCheck_FullMethodName = "/spdkrpc.SPDKService/ReplicaRebuildingSrcShallowCopyCheck"
 	SPDKService_ReplicaRebuildingDstStart_FullMethodName            = "/spdkrpc.SPDKService/ReplicaRebuildingDstStart"
@@ -91,8 +89,6 @@ type SPDKServiceClient interface {
 	ReplicaWatch(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (SPDKService_ReplicaWatchClient, error)
 	ReplicaRebuildingSrcStart(ctx context.Context, in *ReplicaRebuildingSrcStartRequest, opts ...grpc.CallOption) (*ReplicaRebuildingSrcStartResponse, error)
 	ReplicaRebuildingSrcFinish(ctx context.Context, in *ReplicaRebuildingSrcFinishRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	ReplicaRebuildingSrcAttach(ctx context.Context, in *ReplicaRebuildingSrcAttachRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
-	ReplicaRebuildingSrcDetach(ctx context.Context, in *ReplicaRebuildingSrcDetachRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	ReplicaRebuildingSrcShallowCopyStart(ctx context.Context, in *ReplicaRebuildingSrcShallowCopyStartRequest, opts ...grpc.CallOption) (*ReplicaRebuildingSrcShallowCopyStartResponse, error)
 	ReplicaRebuildingSrcShallowCopyCheck(ctx context.Context, in *ReplicaRebuildingSrcShallowCopyCheckRequest, opts ...grpc.CallOption) (*ReplicaRebuildingSrcShallowCopyCheckResponse, error)
 	ReplicaRebuildingDstStart(ctx context.Context, in *ReplicaRebuildingDstStartRequest, opts ...grpc.CallOption) (*ReplicaRebuildingDstStartResponse, error)
@@ -260,24 +256,6 @@ func (c *sPDKServiceClient) ReplicaRebuildingSrcStart(ctx context.Context, in *R
 func (c *sPDKServiceClient) ReplicaRebuildingSrcFinish(ctx context.Context, in *ReplicaRebuildingSrcFinishRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
 	out := new(emptypb.Empty)
 	err := c.cc.Invoke(ctx, SPDKService_ReplicaRebuildingSrcFinish_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *sPDKServiceClient) ReplicaRebuildingSrcAttach(ctx context.Context, in *ReplicaRebuildingSrcAttachRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, SPDKService_ReplicaRebuildingSrcAttach_FullMethodName, in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *sPDKServiceClient) ReplicaRebuildingSrcDetach(ctx context.Context, in *ReplicaRebuildingSrcDetachRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
-	out := new(emptypb.Empty)
-	err := c.cc.Invoke(ctx, SPDKService_ReplicaRebuildingSrcDetach_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -691,8 +669,6 @@ type SPDKServiceServer interface {
 	ReplicaWatch(*emptypb.Empty, SPDKService_ReplicaWatchServer) error
 	ReplicaRebuildingSrcStart(context.Context, *ReplicaRebuildingSrcStartRequest) (*ReplicaRebuildingSrcStartResponse, error)
 	ReplicaRebuildingSrcFinish(context.Context, *ReplicaRebuildingSrcFinishRequest) (*emptypb.Empty, error)
-	ReplicaRebuildingSrcAttach(context.Context, *ReplicaRebuildingSrcAttachRequest) (*emptypb.Empty, error)
-	ReplicaRebuildingSrcDetach(context.Context, *ReplicaRebuildingSrcDetachRequest) (*emptypb.Empty, error)
 	ReplicaRebuildingSrcShallowCopyStart(context.Context, *ReplicaRebuildingSrcShallowCopyStartRequest) (*ReplicaRebuildingSrcShallowCopyStartResponse, error)
 	ReplicaRebuildingSrcShallowCopyCheck(context.Context, *ReplicaRebuildingSrcShallowCopyCheckRequest) (*ReplicaRebuildingSrcShallowCopyCheckResponse, error)
 	ReplicaRebuildingDstStart(context.Context, *ReplicaRebuildingDstStartRequest) (*ReplicaRebuildingDstStartResponse, error)
@@ -773,12 +749,6 @@ func (UnimplementedSPDKServiceServer) ReplicaRebuildingSrcStart(context.Context,
 }
 func (UnimplementedSPDKServiceServer) ReplicaRebuildingSrcFinish(context.Context, *ReplicaRebuildingSrcFinishRequest) (*emptypb.Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReplicaRebuildingSrcFinish not implemented")
-}
-func (UnimplementedSPDKServiceServer) ReplicaRebuildingSrcAttach(context.Context, *ReplicaRebuildingSrcAttachRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReplicaRebuildingSrcAttach not implemented")
-}
-func (UnimplementedSPDKServiceServer) ReplicaRebuildingSrcDetach(context.Context, *ReplicaRebuildingSrcDetachRequest) (*emptypb.Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ReplicaRebuildingSrcDetach not implemented")
 }
 func (UnimplementedSPDKServiceServer) ReplicaRebuildingSrcShallowCopyStart(context.Context, *ReplicaRebuildingSrcShallowCopyStartRequest) (*ReplicaRebuildingSrcShallowCopyStartResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReplicaRebuildingSrcShallowCopyStart not implemented")
@@ -1113,42 +1083,6 @@ func _SPDKService_ReplicaRebuildingSrcFinish_Handler(srv interface{}, ctx contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(SPDKServiceServer).ReplicaRebuildingSrcFinish(ctx, req.(*ReplicaRebuildingSrcFinishRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SPDKService_ReplicaRebuildingSrcAttach_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReplicaRebuildingSrcAttachRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SPDKServiceServer).ReplicaRebuildingSrcAttach(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SPDKService_ReplicaRebuildingSrcAttach_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SPDKServiceServer).ReplicaRebuildingSrcAttach(ctx, req.(*ReplicaRebuildingSrcAttachRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _SPDKService_ReplicaRebuildingSrcDetach_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ReplicaRebuildingSrcDetachRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SPDKServiceServer).ReplicaRebuildingSrcDetach(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SPDKService_ReplicaRebuildingSrcDetach_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SPDKServiceServer).ReplicaRebuildingSrcDetach(ctx, req.(*ReplicaRebuildingSrcDetachRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -1940,14 +1874,6 @@ var SPDKService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReplicaRebuildingSrcFinish",
 			Handler:    _SPDKService_ReplicaRebuildingSrcFinish_Handler,
-		},
-		{
-			MethodName: "ReplicaRebuildingSrcAttach",
-			Handler:    _SPDKService_ReplicaRebuildingSrcAttach_Handler,
-		},
-		{
-			MethodName: "ReplicaRebuildingSrcDetach",
-			Handler:    _SPDKService_ReplicaRebuildingSrcDetach_Handler,
 		},
 		{
 			MethodName: "ReplicaRebuildingSrcShallowCopyStart",
