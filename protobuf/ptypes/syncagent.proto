@@ -67,6 +67,7 @@ message FilesSyncRequest {
   int32 file_sync_http_client_timeout = 5;
   int64 grpc_timeout_seconds = 6;
   FileLocalSync local_sync = 7;
+  map<string, bool> from_address_map = 8;
 }
 
 message FileLocalSync {
